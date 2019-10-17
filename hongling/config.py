@@ -3,6 +3,7 @@ class BaseConfig(object):
 
 class DevelopmentConfig(BaseConfig):
     DEBUG=True
+    #SQLALCHEMY_DATABASE_URI = 'mysql://root:618ljj@localhost:3306/hl_database?charset=utf8'
     SQLALCHEMY_DATABASE_URI = 'mysql://root:618ljj@localhost:3306/hl_database?charset=utf8'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
