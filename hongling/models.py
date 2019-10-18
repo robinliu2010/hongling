@@ -60,6 +60,7 @@ class Course(Base):
     author_id = db.Column(db.Integer,db.ForeignKey('user.id',ondelete='SET NULL'))
     author = db.relationship('User',uselist=False)
     chapters = db.relationship('Chapter')
+    image_url=db.Column(db.String(256))
 
     def __repr__(self):
         return '<Course:{}>'.format(self.name)
