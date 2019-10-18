@@ -13,3 +13,5 @@ flask-shell-ipython
 flask-migrate
 flask-wtf
 mysqlclient
+incremental
+scrapy

@@ -55,7 +55,34 @@ class Course(Base):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(128), unique=True, index=True, nullable=False)
+    #课程描述
+    description = db.Column(db.String(256))
+    author_id = db.Column(db.Integer,db.ForeignKey('user.id',ondelete='SET NULL'))
+    author = db.relationship('User',uselist=False)
+    chapters = db.relationship('Chapter')
+
+    def __repr__(self):
+        return '<Course:{}>'.format(self.name)
+
 
     #ondelete='CASCADE'表示如果用户被删除，那么课程也会被删除
-    author_id = db.Column(db.Integer, db.ForeignKey('user.id', ondelete='CASCADE'))
-    author = db.relationship('User', uselist=False)
+    #author_id = db.Column(db.Integer, db.ForeignKey('user.id', ondelete='CASCADE'))
+    #author = db.relationship('User', uselist=False)
+
+class Chapter(Base):
+    __tablename__='chapter'
+
+    id =db.Column(db.Integer,primary_key=True)
+    name = db.Column(db.String(128),unique=True,index=True)
+    description = db.Column(db.String(256))
+
+    #课程视频的URL地址
+    video_url = db.Column(db.String(256))
+    #视频时长，格式“30:15”，“1:15:20”
+    video_duration = db.Column(db.String(24))
+    #关联到课程，并且课程删除级联删除相关章节
+    course_id = db.Column(db.Integer,db.ForeignKey('course.id',ondelete="CASCADE"))
+    course = db.relationship('Course',uselist=False)
+
+    def __repr__(self):
+        return '<Chapter:{}'.format(self.name)
