@@ -1,5 +1,5 @@
 class BaseConfig(object):
-    SECRET_KEY='makesoure to set avery secret-key',
+    SECRET_KEY='makesoure to set avery secret-key'
     INDEX_PER_PAGE = 9
 
 class DevelopmentConfig(BaseConfig):
